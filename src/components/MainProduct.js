@@ -30,16 +30,16 @@ const PrimaryId = styled.p`
 
 const MainProduct = (props) => {
     const { product } = props;
-
+    const { Base } = product.data
     return ( 
         <MainProductArea>
-            { product.Images && <Images images={product.Images}/>}
+            { product.data.Media.Images && <Images images={product.data.Media.Images}/>}
             <ProductDescription>
-                <Title>{product["Model Name"]}</Title>
-                <PrimaryId>Primary ID: {product["Primary ID"]}</PrimaryId>
-                <p><b>Manufacturer: {product["Manufacturer"]}</b></p>
-                <p><b>Manufacturer Part Number: {product["PartNo"]}</b></p>
-                <p>{product["Marketing"]}</p>
+                <Title>{Base["Model Name"]}</Title>
+                <PrimaryId>Primary ID: {product.primaryId}</PrimaryId>
+                <p><b>Manufacturer: {Base["Brand"]}</b></p>
+                <p><b>Manufacturer Part Number: {Base["PartNo"]}</b></p>
+                <p>{Base["Marketing"]}</p>
             </ProductDescription>
         </MainProductArea>
      );

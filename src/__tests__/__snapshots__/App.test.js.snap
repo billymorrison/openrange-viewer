@@ -5,7 +5,7 @@ exports[`renders the app 1`] = `
   className="App"
 >
   <header
-    className="sc-hKgILt foIpRG"
+    className="sc-hKgILt fexnx"
     data-testid="navbar"
   >
     <img
@@ -36,6 +36,32 @@ exports[`renders the app 1`] = `
       </button>
     </form>
   </header>
-  Hello World
+  <main
+    className="sc-pFZIQ Jqulg"
+  >
+    <div
+      className="sc-jrAGrp hsdZiW"
+    >
+      <h1
+        className="sc-kEjbxe cLHPdf"
+      />
+      <p
+        className="sc-iqHYGH fzUQER"
+      >
+        Primary ID: 
+      </p>
+      <p>
+        <b>
+          Manufacturer: 
+        </b>
+      </p>
+      <p>
+        <b>
+          Manufacturer Part Number: 
+        </b>
+      </p>
+      <p />
+    </div>
+  </main>
 </div>
 `;
