@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import SearchBar from "./SearchBar";
-import Images from "./Images"
-import productJson from "../product.json"
+import NavBar from "./NavBar";
+import MainProduct from "./MainProduct";
+import productJson from "../product.json";
 
 function App() {
   const [product, setProduct] = useState({})
@@ -9,12 +9,13 @@ function App() {
   useEffect(() => {
     setProduct(productJson)
   }, [])
+  
+  console.log(product)
 
   return (
     <div className="App">
-      Hello World
-      <SearchBar />
-      { product.Images && <Images images={product.Images}/>}
+      <NavBar />
+      <MainProduct product={product}></MainProduct>
     </div>
   );
 }

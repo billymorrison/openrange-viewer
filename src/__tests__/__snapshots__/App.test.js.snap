@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the app 1`] = `
+<div
+  className="App"
+>
+  <header
+    className="sc-hKgILt foIpRG"
+    data-testid="navbar"
+  >
+    <img
+      alt="get the spec logo"
+      className="sc-eCssSg jOvrnQ"
+      src="get-the-spec-logo.png"
+    />
+    <form
+      className="sc-bdfBwQ hDpBk"
+      data-testid="search"
+    >
+      <input
+        className="sc-gsTCUz jpVrpN"
+        id="product-search"
+        name="product-search"
+        onChange={[Function]}
+        placeholder="Primary ID"
+        type="text"
+      />
+      <button
+        className="sc-dlfnbm jjTbmM"
+        onClick={[Function]}
+        type="submit"
+      >
+        <i
+          className="fas fa-search"
+        />
+      </button>
+    </form>
+  </header>
+  Hello World
+</div>
+`;
