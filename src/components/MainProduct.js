@@ -1,6 +1,7 @@
 import React from 'react';
 import Images from "./Images";
 import styled from "styled-components";
+import Attributes from "./Attributes"
 
 const MainProductArea = styled.main`
     display: flex;
@@ -40,6 +41,7 @@ const MainProduct = (props) => {
                 <p><b>Manufacturer: {Base["Brand"]}</b></p>
                 <p><b>Manufacturer Part Number: {Base["PartNo"]}</b></p>
                 <p>{Base["Marketing"]}</p>
+                <Attributes data={product.data} />
             </ProductDescription>
         </MainProductArea>
      );

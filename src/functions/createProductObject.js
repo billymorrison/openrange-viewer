@@ -17,6 +17,7 @@ const createProductObject = (productAttributes, attributeSets) => {
         product.data[key] = setAttributeValues(product.data[key].attributes)
     };
     
+    setHiddenSets(product, ["Base", "Media", "Edit Dates"])
     return product;
 };
 
@@ -32,14 +33,14 @@ const filterOutAttributes = (value, productAttributes) => {
     }, []);
 };
 
-const filterOutAttributeSets = (attrSet) => attrSet.filter((element) => Object.keys(element.attributes).length);
+const filterEmptyAttributeSets = (attrSet) => attrSet.filter((element) => Object.keys(element.attributes).length);
 
-const setKeysInAttributeSet = (attrSet) => {
-    attrSet = filterOutAttributeSets(attrSet)
-    return attrSet.reduce((result, attr) => {
+const setKeysInAttributeSet = (data) => {
+    data = filterEmptyAttributeSets(data)
+    return data.reduce((result, attrSet) => {
         result = {
             ...result,
-            [attr.name]: attr,
+            [attrSet.name]: attrSet,
         }
         return result;
     }, {})
@@ -53,6 +54,16 @@ const setAttributeValues = (attrSet) => {
         }
         return result;
     }, {})
+}
+
+const setHiddenSets = (product, array) => {
+    const returnProduct = array.forEach(element => {
+        product.data[element] = {
+            ...product.data[element],
+            hidden: true
+        }
+    });
+    return returnProduct;
 }
 
 export default createProductObject;
