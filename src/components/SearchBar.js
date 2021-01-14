@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
+import createProductObject from "../functions/createProductObject"
+
+const {REACT_APP_CHANNEL_TOKEN, REACT_APP_FEED_TOKEN, REACT_APP_BASE_URL} = process.env;
 
 const Search = styled.form`
     display: flex;
@@ -25,18 +29,39 @@ const SearchButton = styled.button`
     }
 `
 
+const getProduct = async (primaryId) => {
+    let error = {}
+    const attributes = await axios
+        .get(`${REACT_APP_BASE_URL}${primaryId}?access_token=${REACT_APP_CHANNEL_TOKEN}`, {headers: {}})
+        .then(response => response)
+        .catch(err => error.errMessage = err.response.data.error.message)
+    const attributeSets = await axios
+        .get(`${REACT_APP_BASE_URL}${primaryId}/attribute-sets?access_token=${REACT_APP_FEED_TOKEN}`, {headers: {}})
+        .then(response => response)
+        .catch(err => error.errMessage = err.response.data.error.message)
+    return error.errMessage 
+    ? error
+    : createProductObject(attributes.data, attributeSets)
+}
+
 const SearchBar = (props) => {
     const [value, setValue] = useState("")
-
-    const {placeholder} = props
+    const {placeholder, setProduct, setError} = props
 
     const handleChange = (event) => {
         setValue(event.target.value)
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
-        console.log(value)
+        const response = await getProduct(value)
+        console.log(response)
+        if(response.errMessage){
+            setError(response)
+        } else {
+            setError({})
+            setProduct(response)
+        }
     }
 
     return (

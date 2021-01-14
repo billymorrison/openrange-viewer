@@ -6,11 +6,12 @@ const ImagesBlock = styled.div`
     flex-direction: column;
     justify-content: space-between;
     height: 500px;
-    width: 400px;
+    width: 530px;
 `
 
 const MainImage = styled.img`
-    height: 300px;
+    max-width: 530px;
+    max-height: 320px;
     margin: auto;
 `;
 
@@ -19,12 +20,14 @@ const AllImages = styled.div`
     justify-content: space-between;
     overflow: scroll;
     height: 90px;
+    width: 100%;
 `
 
 const ProductImage = styled.img`
     height: 100%;
     width: auto;
     padding-right: 10px;
+    cursor: pointer;
 `
 
 const Images = (props) => {
@@ -40,7 +43,8 @@ const Images = (props) => {
         let elementArray = imageArray.map(image => {
         return <ProductImage 
             onClick={(e) => setMainImage(e.target.src)} 
-            src={image} alt="product" 
+            src={image} 
+            alt="product" 
             key={imageArray.indexOf(image)}
         />
         })

@@ -3,12 +3,20 @@ import styled from "styled-components";
 import shallowObjectEquality from "../functions/shallowObjectEquality"
 
 const AttributeDisplay = styled.div`
-    width: 100%;
-    background-color: yellow;
-    height: 40px;
+    display: none;
 
-    ${( active ) => active === true && `
-    background-color: blue !important;
+    ${( {active} ) => active === true && `
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid #5685c0;
+    box-sizing: border-box;
+    
+    && p {
+        padding: 0 20px;
+        display: block;
+        width: 100%;
+    }
   `}
 `
 
@@ -19,9 +27,21 @@ const AttributeTab = (props) => {
     useEffect(() => {
         setIsActive(shallowObjectEquality(attrSet, activeSet));
         }, [attrSet, activeSet]);
-    console.log(isActive)
+
+    const printAttributes = (attributesObject) => {
+        let result = [];
+        for(const key in attributesObject){
+            result.push(<p key={key}>{ `${key}: ${attributesObject[key]}` }</p>)
+        }
+        return result
+    }
+
     return ( 
-        <AttributeDisplay active={isActive}/>
+        <AttributeDisplay active={isActive}>
+            {
+                printAttributes(attrSet)
+            }
+        </AttributeDisplay>
      );
 }
  

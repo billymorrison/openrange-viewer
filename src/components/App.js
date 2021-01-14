@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import NavBar from "./NavBar";
 import MainProduct from "./MainProduct";
-import productJson from "../product.json";
-import productAttributesJson from "../attributeSets.json";
-import createProductObject from "../functions/createProductObject"
+import Footer from "./Footer"
 
 function App() {
   const [product, setProduct] = useState({
@@ -13,14 +11,11 @@ function App() {
     }
   })
 
-  useEffect(() => {
-    setProduct(createProductObject(productJson, productAttributesJson))
-  }, [])
-
   return (
     <div className="App">
-      <NavBar />
-      <MainProduct product={product}></MainProduct>
+      <NavBar setProduct={setProduct}/>
+      {product.primaryId && <MainProduct product={product} />}
+      <Footer />
     </div>
   );
 }

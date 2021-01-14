@@ -9,18 +9,25 @@ const MainProductArea = styled.main`
     width: 100%;
     margin-top: 50px;
     color: #333;
+    position: absolute;
+    top: 100px;
+    height: 800px;
+
+    & h1 {
+        color: #4d7ebd;
+    }
 `
 
 const ProductDescription = styled.div`
     display: flex;
     flex-direction: column;
-    width: 50%;
+    max-width: 850px;
     justify-content: start;
-`
-
-const Title = styled.h1`
-    font-weight: 200px;
-    color: #4d7ebd;
+    height: 99%;
+    overflow-y: scroll;
+    overflow-x: auto;
+    margin-bottom: 90px;
+    color: #333;
 `
 
 const PrimaryId = styled.p`
@@ -32,11 +39,12 @@ const PrimaryId = styled.p`
 const MainProduct = (props) => {
     const { product } = props;
     const { Base } = product.data
+    
     return ( 
         <MainProductArea>
             { product.data.Media.Images && <Images images={product.data.Media.Images}/>}
             <ProductDescription>
-                <Title>{Base["Model Name"]}</Title>
+                <h1>{Base["Model Name"]}</h1>
                 <PrimaryId>Primary ID: {product.primaryId}</PrimaryId>
                 <p><b>Manufacturer: {Base["Brand"]}</b></p>
                 <p><b>Manufacturer Part Number: {Base["PartNo"]}</b></p>

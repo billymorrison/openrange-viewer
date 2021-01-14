@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
 import AttributeTab from "./AttributeTab";
+import shallowObjectEquality from "../functions/shallowObjectEquality"
 
-const SetHeaderRow = styled.ul`
-    width: 500px;
+const SetHeaderGrid = styled.ul`
+    max-width: 800px;
     display: flex;
     flex-direction: column;
     padding: 0;
@@ -23,31 +24,38 @@ const SetHeader = styled.li`
     width: 100%;
     border: 1px solid #5685c0;
     box-sizing: border-box;
+    cursor: pointer;
 `
 
 const Attributes = (props) => {
-    const [activeSet, setActiveSet] = useState({
-        "Feature 1": "Eye Comfort Certified",
-        "Feature 2": "Eye Caring"
-    })
+    const [activeSet, setActiveSet] = useState({})
 
     const {data} = props;
 
     return ( 
         <>
-            <SetHeaderRow>
+            <SetHeaderGrid>
                 {Object.keys(data).map((key) => {
                     if(!data[key].hidden) {
                         return (
                             <>
-                                <SetHeader>{key}</SetHeader>
-                                <AttributeTab attrSet={data[key]} activeSet={activeSet}/>
+                                <SetHeader
+                                    onClick={() => {
+                                        !shallowObjectEquality(activeSet, data[key])
+                                        ? setActiveSet(data[key])
+                                        : setActiveSet({})
+                                    }}
+                                    key={key}
+                                >
+                                    {key}
+                                </SetHeader>
+                                <AttributeTab attrSet={data[key]} activeSet={activeSet} key={`${key}Value`}/>
                             </>
                         )
                     }
                 })
                 }
-            </SetHeaderRow>
+            </SetHeaderGrid>
         </>
      );
 }
