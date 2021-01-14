@@ -36,8 +36,9 @@ const Attributes = (props) => {
         <>
             <SetHeaderGrid>
                 {Object.keys(data).map((key) => {
+                    let response;
                     if(!data[key].hidden) {
-                        return (
+                        response = (
                             <>
                                 <SetHeader
                                     onClick={() => {
@@ -53,6 +54,7 @@ const Attributes = (props) => {
                             </>
                         )
                     }
+                    return response;
                 })
                 }
             </SetHeaderGrid>

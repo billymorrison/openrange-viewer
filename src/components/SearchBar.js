@@ -54,9 +54,11 @@ const SearchBar = (props) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        const response = await getProduct(value)
-        console.log(response)
-        if(response.errMessage){
+        let response;
+        value && (response = await getProduct(value))
+        if(!response){
+            setError({errMessage: "Please enter a Primary ID"})
+        } else if (response && response.errMessage) {
             setError(response)
         } else {
             setError({})
