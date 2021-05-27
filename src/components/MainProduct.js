@@ -1,7 +1,7 @@
 import React from 'react';
 import Images from "./Images";
 import styled from "styled-components";
-import Attributes from "./Attributes"
+import Attributes from "./Attributes";
 
 const MainProductArea = styled.main`
     display: flex;
